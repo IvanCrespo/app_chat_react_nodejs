@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import authRoutes from "./routes/AuthRoutes.js";
 
 // Importar y config. dotenv
 dotenv.config();
@@ -22,6 +23,9 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+// Routes
+app.use("/api/auth", authRoutes);
 
 // Run server
 const server = app.listen(port, () => {

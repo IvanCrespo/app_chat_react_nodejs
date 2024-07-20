@@ -22,6 +22,7 @@
     "@syncfusion/ej2-react-popups": "^26.1.42",
     "@syncfusion/ej2-react-richtexteditor": "^26.1.42",
     "@syncfusion/ej2-react-schedule": "^26.1.41",
+    "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.408.0",
