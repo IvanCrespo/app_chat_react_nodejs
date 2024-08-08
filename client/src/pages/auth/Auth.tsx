@@ -2,15 +2,82 @@ import * as images from "@/assets/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { apiClient } from "@/lib/api-client";
+import { useAuthStore } from "@/store";
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 export const Auth = () => {
+  const navigate = useNavigate();
+  const { setUserInfo } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleLogin = async () => {};
+  const validateLogin = () => {
+    if (!email.length) {
+      toast.error("El correo electrónico es requerido!");
+      return false;
+    }
+    if (!password.length) {
+      toast.error("La contraseña es requerida!");
+      return false;
+    }
+    return true;
+  };
 
-  const handleSignup = async () => {};
+  const validateSignup = () => {
+    if (!email.length) {
+      toast.error("El correo electrónico es requerido!");
+      return false;
+    }
+    if (!password.length) {
+      toast.error("La contraseña es requerida!");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      toast.error(
+        "La contraseña y confirmar contraseña deben de ser las mismas!"
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogin = async () => {
+    if (validateLogin()) {
+      const response = await apiClient.post(
+        LOGIN_ROUTE,
+        { email, password },
+        { withCredentials: true }
+      );
+      console.log('Devolvio login', response)
+      if (response.data.user.id) {
+        setUserInfo(response.data.user);
+        if (response.data.user.profileSetup) navigate("/chat");
+        else navigate("/profile");
+      }
+      console.log("Respuesta", response);
+    }
+  };
+
+  const handleSignup = async () => {
+    if (validateSignup()) {
+      const response = await apiClient.post(
+        SIGNUP_ROUTE,
+        { email, password },
+        { withCredentials: true }
+      );
+      console.log('Devolvio signup', response)
+      if (response.status === 201) {
+        setUserInfo(response.data.user);
+        navigate("/profile");
+      }
+      console.log("Respuesta", response);
+    }
+  };
 
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">

@@ -24,6 +24,8 @@ Para instalar el repositorio necesitaremos lo siguiente:
 | `"react-icons"` | **Requiere** "^5.2.1" |
 | `react-router-dom` | **Requiere** "^6.25.1" |
 | `tailwindcss` | **Requiere** "^3.4.6" |
+| `axios` | **Requiere** "^1.7.3" |
+| `zustand` | **Requiere** "^4.5.4" |
 
 Para Vite JS (Devtool que se ocupara para el desarrollo del proyecto) verificar que al clonar el proyecto tengamos la siguiente versión: [ViteJS](https://vitejs.dev/) `"^5.3.4"`.
 
