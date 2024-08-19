@@ -159,7 +159,6 @@ export const removeProfileImage = async (req, res, next) => {
       return res.status(404).send("El usuario no se encontro!");
     }
     if(user.image){
-      console.log('Img', user.image);
       unlinkSync(user.image);
     }
     user.image=null;

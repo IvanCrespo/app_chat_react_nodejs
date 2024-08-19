@@ -12,15 +12,16 @@ export const ContactList = ({ contacts, isChannel = false }) => {
   } = useContactStore();
 
   const handleClick = (contact) => {
+    setSelectedChatMessages([]);
     if (isChannel) {
       setSelectedChatType("channel");
     } else {
       setSelectedChatType("contact");
     }
-    setSelectedChatData(contact);
     if (selectedChatData && selectedChatData._id !== contact._id) {
       setSelectedChatMessages([]);
     }
+    setSelectedChatData(contact);
   };
 
   return (

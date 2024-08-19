@@ -150,7 +150,6 @@ export const MessageContainer = () => {
             <div
               className="cursor-pointer"
               onClick={() => {
-                console.log("Para ver", message.fileUrl);
                 setShowImage(true);
                 setImageURL(message.fileUrl);
               }}
@@ -212,7 +211,6 @@ export const MessageContainer = () => {
             <div
               className="cursor-pointer"
               onClick={() => {
-                console.log("Para ver", message.fileUrl);
                 setShowImage(true);
                 setImageURL(message.fileUrl);
               }}

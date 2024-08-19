@@ -47,18 +47,16 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const handleRecieveMessage = (message) => {
-      console.log("Msg", message);
-      // const { selectedChatData, selectedChatType, addMessage } =
-      //   useContactStore.getState();
       if (
         selectedChatType !== undefined &&
         (selectedChatData._id === message.sender._id ||
           selectedChatData._id === message.recipient._id)
       ) {
-        console.log("Mensaje rcv:", message);
+        console.log("Message rcv:", message);
         addMessage(message);
       }
       addContactsInDMContacts(message, userInfo)
+      return;
     };
 
     socket?.on("recieveMessage", handleRecieveMessage);
@@ -66,11 +64,9 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const handleRecieveChannelMessage = (message) => {
-      console.log("Msg Channel", message);
       if (
         selectedChatType !== undefined && selectedChatData._id === message.channelId
       ) {
-        console.log("Mensaje channel rcv:", message);
         addMessage(message);
       }
       addChannelInChannelList(message);

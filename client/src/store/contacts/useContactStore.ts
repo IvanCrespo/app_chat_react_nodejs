@@ -54,7 +54,7 @@ export const useContactStore = create<ContactState>()((set, get) => ({
       selectedChatType: undefined,
       selectedChatMessages: [],
     }),
-  setSelectedChatMessages: (state) => set({ selectedChatMessages: state }),
+  setSelectedChatMessages: (selectedChatMessages) => set({ selectedChatMessages }),
   addMessage: (message) => {
     const selectedChatMessages = get().selectedChatMessages;
     const selectedChatType = get().selectedChatType;
@@ -74,6 +74,7 @@ export const useContactStore = create<ContactState>()((set, get) => ({
         },
       ],
     });
+    console.log('SE va', selectedChatMessages);
   },
   addChannelInChannelList: (message) => {
     const channels = get().channels;

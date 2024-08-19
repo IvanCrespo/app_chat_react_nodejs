@@ -53,13 +53,11 @@ export const Auth = () => {
         { email, password },
         { withCredentials: true }
       );
-      console.log('Devolvio login', response)
       if (response.data.user.id) {
         setUserInfo(response.data.user);
         if (response.data.user.profileSetup) navigate("/chat");
         else navigate("/profile");
       }
-      console.log("Respuesta", response);
     }
   };
 
@@ -70,12 +68,10 @@ export const Auth = () => {
         { email, password },
         { withCredentials: true }
       );
-      console.log('Devolvio signup', response)
       if (response.status === 201) {
         setUserInfo(response.data.user);
         navigate("/profile");
       }
-      console.log("Respuesta", response);
     }
   };
 

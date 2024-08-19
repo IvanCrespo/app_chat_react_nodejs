@@ -23,7 +23,7 @@ export const MessageBar = () => {
   };
 
   const handleSendMessage = async () => {
-    console.log("Si entro a send Message", socket);
+    console.log('Se envio mensaje')
     if (selectedChatType === "contact" && socket) {
       socket.emit("sendMessage", {
         sender: userInfo.id,
@@ -42,6 +42,7 @@ export const MessageBar = () => {
       });
     }
     setMessage("");
+    return;
   };
 
   const handleAttachmentClick = () => {
